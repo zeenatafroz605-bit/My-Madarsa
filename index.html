@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>جامعہ امّ ہانی 2.0 • Home</title>
+<style>
+:root{--accent:#0b6fb8;--muted:#6b7280;--bg:#f7fafc}
+*{box-sizing:border-box}
+body{margin:0;font-family:Segoe UI,Roboto,Arial,Helvetica,sans-serif;background:var(--bg);color:#0f1724}
+.container{max-width:980px;margin:18px auto;padding:16px}
+.header{display:flex;gap:12px;align-items:center}
+.logo{width:64px;height:64px;background:var(--accent);color:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700}
+h1{margin:0;font-size:1.2rem}
+.nav{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.nav button{background:#fff;border:1px solid #e6eef7;padding:8px 10px;border-radius:8px;cursor:pointer}
+.card{background:#fff;padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,42,0.06);margin-top:14px}
+.grid{display:grid;grid-template-columns:1fr 300px;gap:14px}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.notice{background:#fff3c4;padding:10px;border-radius:8px}
+.list{margin:0;padding:0;list-style:none}
+.list li{padding:8px 0;border-bottom:1px dashed #eef4fb}
+.form-row{display:flex;gap:8px;flex-wrap:wrap}
+.input,textarea,select{width:100%;padding:8px;border-radius:8px;border:1px solid #e6eef7}
+.btn{padding:10px 12px;border-radius:8px;border:none;background:var(--accent);color:#fff;cursor:pointer}
+.small{font-size:0.9rem;color:var(--muted)}
+.footer{margin-top:18px;color:var(--muted);font-size:0.9rem}
+.logo-text{font-size:0.95rem}
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="header">
+    <div class="logo">م</div>
+    <div>
+      <h1 id="site-title">جامعہ امّ ہانی 2.0</h1>
+      <div class="small">Ta'lim & Tarbiat • Admission open — 2025</div>
+    </div>
+  </header>
+
+  <nav class="nav" role="navigation">
+    <button data-view="home">Home</button>
+    <button data-view="about">हमारे बारे में</button>
+    <button data-view="admission">Admission</button>
+    <button data-view="teachers">कर्मचारी</button>
+    <button data-view="notice">Noticeboard</button>
+    <button data-view="results">Results</button>
+    <button data-view="contact">Contact</button>
+  </nav>
+
+  <main id="app">
+
+    <section id="home" class="card view">
+      <div class="grid">
+        <div>
+          <h2>स्वागत है — جامعہ امّ ہانی 2.0</h2>
+          <p class="small">यह साइट आम लोगों और अभिभावकों के लिए बनाया गया है — पढ़ाई, नोटिस, नतीजे और संपर्क सहज रूप से उपलब्ध हैं।</p>
+
+          <div style="margin-top:12px">
+            <h3>मुख्य सुविधाएँ</h3>
+            <ul>
+              <li>ऑनलाइन दाखिला फॉर्म</li>
+              <li>नोटिस और घटनाएँ</li>
+              <li>अध्यापक सूची और संपर्क</li>
+              <li>नतीजों का पब्लिक पेज</li>
+            </ul>
+          </div>
+
+          <div style="margin-top:12px" class="card">
+            <div class="notice"><strong>Important:</strong> नया सत्र दाखिला चालू है — आख़िरी तारीख: <strong id="ad-deadline">32 October 2025</strong></div>
+          </div>
+
+        </div>
+
+        <aside>
+          <div class="card">
+            <h4>Quick Links</h4>
+            <ul class="list">
+              <li>Admission form</li>
+              <li>Syllabus</li>
+              <li>Contact admin</li>
+            </ul>
+          </div>
+
+          <div class="card" style="margin-top:12px">
+            <h4>Donate / Support</h4>
+            <p class="small">Help us with books & stationeries. <br><a href="mailto:chhinarfarhan@gmail.com" class="small">Donate</a></p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about" class="card view" style="display:none">
+      <h2>हमारे बारे में</h2>
+      <p>यहाँ आप अपने मदरसे का इतिहास, मिशन, और कोर्स का छोटा परिचय लिख सकते हैं।</p>
+      <h3>Our Vision</h3>
+      <p class="small">शिक्षा, नैतिकता और समाजिक सुधार — हम बच्चों को आधुनिक और धार्मिक शिक्षा दोनों देते हैं।</p>
+    </section>
+
+    <section id="admission" class="card view" style="display:none">
+      <h2>Admission Form</h2>
+      <p class="small">नीचे फॉर्म भर कर आप दाखिला के लिए आवेदन कर सकते हैं — (यह एक साधारण फर्म है; आप इसे backend के साथ जोड़ सकते हैं)</p>
+      <form id="admission-form" onsubmit="event.preventDefault();submitAdmission()">
+        <div class="form-row">
+          <div style="flex:1">
+            <input class="input" id="stu-name" placeholder="Student Name" required />
+          </div>
+          <div style="width:140px">
+            <select id="stu-class" class="input">
+              <option value="">Class</option>
+              <option>Nursery</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-top:8px">
+          <input class="input" id="parent" placeholder="Parent / Guardian" required />
+        </div>
+        <div style="margin-top:8px">
+          <input class="input" id="phone" placeholder="Phone / WhatsApp" required />
+        </div>
+        <div style="margin-top:8px">
+          <textarea class="input" id="notes" placeholder="Extra notes (optional)"></textarea>
+        </div>
+        <div style="margin-top:8px">
+          <button class="btn" type="submit">Apply Now</button>
+        </div>
+      </form>
+      <div id="apply-result" style="margin-top:10px"></div>
+    </section>
+
+    <section id="teachers" class="card view" style="display:none">
+      <h2>कर्मचारी</h2>
+      <ul class="list">
+        <li><strong>Maulana Mufti Muhammad Yasin Azhari</strong> — Principal — <span class="small">contact: 1112223330</span></li>
+        <li><strong>Maulana Chamar Farhan Ansari</strong> — Teacher — <span class="small">contact: 1112223330</span></li>
+      </ul>
+    </section>
+
+    <section id="notice" class="card view" style="display:none">
+      <h2>Noticeboard</h2>
+      <ul id="notice-list" class="list">
+        <li>10 Oct 2025 — परीक्षा तिथि घोषित की गई है।</li>
+        <li>01 Sep 2025 — पुस्तक दान कैंप।</li>
+      </ul>
+
+      <div style="margin-top:12px">
+        <h4>Add Notice (Admin)</h4>
+        <input id="notice-text" class="input" placeholder="Notice text" />
+        <div style="margin-top:8px">
+          <button class="btn" onclick="addNotice()">Add</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="card view" style="display:none">
+      <h2>Results</h2>
+      <p class="small">Students' results will be uploaded here as PDF or simple list.</p>
+      <div id="results-area">
+        <ul class="list">
+          <li>2025 Term 1 — <a href="#">Download PDF</a></li>
+        </ul>
+      </div>
+      <div style="margin-top:12px">
+        <h4>Upload Result (Admin)</h4>
+        <input type="text" id="results-link" class="input" placeholder="Public URL to PDF / ZIP" />
+        <div style="margin-top:8px"><button class="btn" onclick="addResult()">Publish</button></div>
+      </div>
+    </section>
+
+    <section id="contact" class="card view" style="display:none">
+      <h2>Contact</h2>
+      <p class="small">Address: <span id="address">Naala Gale near Chamar Toli, ADM D.L</span></p>
+      <p class="small">Phone: <span id="phone-num">1112223330</span></p>
+      <h4>Message directly</h4>
+      <form onsubmit="event.preventDefault();sendMessage()">
+        <input id="msg-name" class="input" placeholder="Your name" required />
+        <input id="msg-phone" class="input" placeholder="Phone / Email" style="margin-top:8px" required />
+        <textarea id="msg-text" class="input" placeholder="Message" style="margin-top:8px" required></textarea>
+        <div style="margin-top:8px"><button class="btn">Send Message</button></div>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    © <span id="year"></span> جامعہ امّ ہانی 2.0 • Developed by You. <a href="mailto:chhinarfarhan@gmail.com" id="donate">Donate</a>
+  </footer>
+
+</div>
+
+<script>
+const views = document.querySelectorAll('.view');
+function show(viewId){ views.forEach(v=>v.style.display='none'); document.getElementById(viewId).style.display='block'; }
+document.querySelectorAll('[data-view]').forEach(btn=>btn.addEventListener('click',()=>{ show(btn.dataset.view); }));
+show('home');
+document.getElementById('year').innerText = new Date().getFullYear();
+function submitAdmission(){ const name=document.getElementById('stu-name').value,clas=document.getElementById('stu-class').value,parent=document.getElementById('parent').value,phone=document.getElementById('phone').value,notes=document.getElementById('notes').value; window.location.href=`mailto:chhinarfarhan@gmail.com?subject=${encodeURIComponent('Admission Application: '+name)}&body=${encodeURIComponent(`Name: ${name}\nClass: ${clas}\nParent: ${parent}\nPhone: ${phone}\nNotes: ${notes}`)}`; document.getElementById('apply-result').innerText='आपका फॉर्म मेल क्लाइंट के माध्यम से भेज दिया गया है — कृपया पुष्टि करें।';}
+function addNotice(){ const text=document.getElementById('notice-text').value.trim(); if(!text)return alert('Notice text दर्ज करें'); const ul=document.getElementById('notice-list'); const li=document.createElement('li'); li.textContent=`${new Date().toLocaleDateString('hi-IN')} — ${text}`; ul.prepend(li); document.getElementById('notice-text').value='';}
+function addResult(){ const link=document.getElementById('results-link').value.trim(); if(!link)return alert('URL डालें'); const ul=document.querySelector('#results-area ul'); const li=document.createElement('li'); li.innerHTML=`${new Date().getFullYear()} Result — <a href="${link}" target="_blank">Download</a>`; ul.prepend(li); document.getElementById('results-link').value='';}
+function sendMessage(){ const n=document.getElementById('msg-name').value,p=document.getElementById('msg-phone').value,t=document.getElementById('msg-text').value; window.location.href=`mailto:chhinarfarhan@gmail.com?subject=${encodeURIComponent('Contact from '+n)}&body=${encodeURIComponent(`From: ${n}\nContact: ${p}\n\n${t}`)}`; alert('आपका संदेश मेल क्लाइंट के माध्यम से भेज दिया गया है');}
+</script>
+
+</body>
+</html>
